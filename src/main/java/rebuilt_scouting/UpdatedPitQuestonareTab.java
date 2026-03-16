@@ -603,6 +603,60 @@ public class UpdatedPitQuestonareTab {
 
 
         //! ActionListiners configured below! Likely bugs!
+        //Climb
+        canClimb.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (canClimb.isSelected()) {
+                    climbPanel.add(secondaryClimbPanel);
+                    if(hasAuto.isSelected()){
+                        autoPanel2.add(autoClimb);
+                    }
+                } else {
+                    climbPanel.remove(secondaryClimbPanel);
+                    if(hasAuto.isSelected()){
+                        autoPanel2.remove(autoClimb);
+                    }
+                }
+                climbPanel.repaint();
+                climbPanel.revalidate();
+                autoPanel2.repaint();
+                autoPanel2.revalidate();
+                
+            }
+        });
+        // This is for hiding everything about the intake untill we know it exists
+        hasIntake.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (hasIntake.isSelected()) {
+                    intakePanel.add(intakePanelRow2);
+                    if (multipleIntakes.isSelected()) {
+                        intakePanel.add(intakeQuanityPanel);
+                    }
+                } else {
+                    intakePanel.remove(intakePanelRow2);
+                    intakePanel.remove(intakeQuanityPanel);
+                }
+                intakePanel.revalidate();
+                intakePanel.repaint();
+            }
+        });
+        // This is just for the fancy thing where if it has multiple intakes it'll have
+        // a spinner appear
+        multipleIntakes.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (multipleIntakes.isSelected()) {
+                    intakePanel.add(intakeQuanityPanel);
+                } else {
+                    intakePanel.remove(intakeQuanityPanel);
+                }
+                intakePanel.revalidate();
+                intakePanel.repaint();
+            }
+
+        });
         //auto actionlistiner
         hasAuto.addActionListener(new ActionListener() {
             @Override
@@ -626,60 +680,6 @@ public class UpdatedPitQuestonareTab {
                 }
             autoPanel2.repaint();
             autoPanel2.revalidate();
-
-            }
-        });
-        // This is just for the fancy thing where if it has multipule intakes it'll have
-        // a spinner appear
-        multipleIntakes.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (multipleIntakes.isSelected()) {
-                    intakePanel.add(intakeQuanityPanel);
-                } else {
-                    intakePanel.remove(intakeQuanityPanel);
-                }
-                intakePanel.revalidate();
-                intakePanel.repaint();
-            }
-
-        });
-        // This is for hiding everything about the intake untill we know it exists
-        hasIntake.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (hasIntake.isSelected()) {
-                    intakePanel.add(intakePanelRow2);
-                    if (multipleIntakes.isSelected()) {
-                        intakePanel.add(intakeQuanityPanel);
-                    }
-                } else {
-                    intakePanel.remove(intakePanelRow2);
-                    intakePanel.remove(intakeQuanityPanel);
-                }
-                intakePanel.revalidate();
-                intakePanel.repaint();
-            }
-        });
-        //Climb
-        canClimb.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (canClimb.isSelected()) {
-                    climbPanel.add(secondaryClimbPanel);
-                    if(hasAuto.isSelected()){
-                        autoPanel2.add(autoClimb);
-                    }
-                } else {
-                    climbPanel.remove(secondaryClimbPanel);
-                    if(hasAuto.isSelected()){
-                        autoPanel2.remove(autoClimb);
-                    }
-                }
-                climbPanel.repaint();
-                climbPanel.revalidate();
-                autoPanel2.repaint();
-                autoPanel2.revalidate();
 
             }
         });
@@ -707,7 +707,7 @@ public class UpdatedPitQuestonareTab {
                     if(hasIntake.isSelected()){
                         writer.append("\nBumper hole used: "+ bumperHole.isSelected());
                         writer.append("\nOver bmper intake used: "+ overBumperIntake.isSelected());
-                        writer.append("\nIntake Amount: "+ (multipleIntakes.isSelected()?(String)intakeAmount.getValue():"1"));
+                        writer.append("\nIntake Amount: "+ (multipleIntakes.isSelected()?intakeAmount.getValue():"1").toString());
                     }
                     writer.close();
                     System.out.println(SaveFile.exists()); 
