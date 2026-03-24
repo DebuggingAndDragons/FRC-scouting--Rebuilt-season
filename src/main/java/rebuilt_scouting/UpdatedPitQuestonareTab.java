@@ -9,9 +9,6 @@ import java.io.IOException;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
-import javax.swing.BoxLayout;
-
-import java.nio.file.*;
 
 public class UpdatedPitQuestonareTab {
     public UpdatedPitQuestonareTab() {
@@ -207,11 +204,14 @@ public class UpdatedPitQuestonareTab {
 
         // Creates a label and a dropdown for the possible climbs
         JLabel climbLabel = new JLabel("Climb:");
+
+        @SuppressWarnings("rawtypes")
         JComboBox climbTierBox = new JComboBox<>(climbTiers);
 
         // Creates a label and ComboBox for types of climbers (Pen state,
         // climber-in-a-box, etc)
         JLabel climbStyle = new JLabel("Climb Type");
+        @SuppressWarnings("rawtypes")
         JComboBox climbTypeBox = new JComboBox<>(climberTypes);
 
         // Adds the checkbox to see if the robot can climb to the climbPanel
@@ -284,6 +284,7 @@ public class UpdatedPitQuestonareTab {
         JPanel drivetrainPanel = new JPanel(new GridLayout(1,3));
         String[] drivetrains ={"Tankdrive", "Mechanum", "Swervedrive", "Omniwheels", "Raptordrive", "Other"};
         JLabel driveLabel = new JLabel("Drivetrain:");
+        @SuppressWarnings("rawtypes")
         JComboBox driveBox=new JComboBox<>(drivetrains);
         JCheckBox fullyWorkingDrive = new JCheckBox("Fully works");
 
@@ -694,7 +695,7 @@ public class UpdatedPitQuestonareTab {
 
                 try {
                     FileWriter writer = new FileWriter(SaveFile);
-                    writer.append("Team Name: "+teamName);
+                    writer.append("\nTeam Name: "+teamName);
                     writer.append("\nTeam Number: "+ teamNum);
                     writer.append("\nRobot Archetype: "+archetype);
                     writer.append("\nModified from archetype (returns true for custom robots by default): "+modified);
@@ -709,6 +710,18 @@ public class UpdatedPitQuestonareTab {
                         writer.append("\nOver bmper intake used: "+ overBumperIntake.isSelected());
                         writer.append("\nIntake Amount: "+ (multipleIntakes.isSelected()?intakeAmount.getValue():"1").toString());
                     }
+                    writer.append("\nHopper Type: "+ hopperBox.getSelectedItem());
+                    writer.append("\nHopper Capacity: "+ fuelcount.getValue());
+
+                    writer.append("\nNumber of Shooters: "+ shooterCount.getValue());
+                    writer.append("\nTurrets: "+ areOmniShoot.isSelected());
+
+                    writer.append("\nDrive Fully works: "+ fullyWorkingDrive.isSelected());
+                    writer.append("\nDrive Train: "+driveBox.getSelectedItem());
+                    //if(){
+
+                    //}
+
                     writer.close();
                     System.out.println(SaveFile.exists()); 
                 } catch (IOException e1) {
@@ -718,15 +731,5 @@ public class UpdatedPitQuestonareTab {
             }
             
         });
-
-        
     }
-    public static String niceTrueFalse(boolean Input){
-        if (Input){
-            return "Yes";
-        }else{
-            return "No";
-        }
-    }
-    
 }

@@ -1,4 +1,4 @@
-package rebuilt_scouting;
+package rebuilt_scouting.MicroClasses;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;

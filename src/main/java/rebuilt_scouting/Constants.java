@@ -1,7 +1,5 @@
 package rebuilt_scouting;
 
-import java.time.MonthDay;
-
 public final class Constants {
     private Constants(){};//This forces this to be a singleton
     
